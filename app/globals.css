@@ -38,3 +38,16 @@ body {
 .primaryButton:hover {
   background-color: lightslategray;
 }
+
+.secondaryButton {
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.secondaryButton:hover {
+  background-color: crimson;
+}

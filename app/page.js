@@ -1,4 +1,5 @@
 "use client"
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 export default function Home() {
@@ -44,7 +45,6 @@ export default function Home() {
       console.log('Item deleted successfully');
       fetchUsers();
       setForm({ firstName: '', lastName: '' });
-    
     } catch (error) {
       console.error('Error deleting user:', error);
     }
@@ -87,8 +87,8 @@ export default function Home() {
                 <td className='border border-white'>{user.firstName}</td>
                 <td className='border border-white'>{user.lastName}</td>
                 <td className='border border-white'>
-                  {/* <button className='primaryButton m-1'>Edit</button> */}
-                  <button className='primaryButton m-1' onClick={()=>handleDelete(user._id)}>Delete</button>
+                  <Link href={`user/${user._id}`} className='primaryButton m-1'>View</Link>
+                  <button className='secondaryButton m-1' onClick={() => handleDelete(user._id)}>Delete</button>
                 </td>
               </tr>
             ))}
