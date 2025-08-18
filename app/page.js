@@ -88,6 +88,7 @@ export default function Home() {
                 <td className='border border-white'>{user.lastName}</td>
                 <td className='border border-white'>
                   <Link href={`user/${user._id}`} className='primaryButton m-1'>View</Link>
+                  <Link href={`user/edit/${user._id}`} className='primaryButton m-1'>Edit</Link>
                   <button className='secondaryButton m-1' onClick={() => handleDelete(user._id)}>Delete</button>
                 </td>
               </tr>

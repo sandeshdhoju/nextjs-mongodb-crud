@@ -3,11 +3,11 @@ import clientPromise from '../../../lib/mongodb'
 import { ObjectId } from 'mongodb';
 
 export async function GET(request, { params }) {
-    const { id } =  await params;
+    const { id } = await params;
     try {
         const client = await clientPromise;
         const db = client.db('user');
-        const user = await db.collection('users').findOne({_id: new ObjectId(id)});
+        const user = await db.collection('users').findOne({ _id: new ObjectId(id) });
 
         return NextResponse.json(user);
     } catch (error) {
@@ -16,7 +16,7 @@ export async function GET(request, { params }) {
 }
 
 export async function DELETE(request, { params }) {
-    const { id } = params;
+    const { id } = await params;
 
     try {
         const client = await clientPromise;
@@ -29,6 +29,32 @@ export async function DELETE(request, { params }) {
         }
     } catch (error) {
         return NextResponse.json({ message: 'Error deleting user', error: error.message }, { status: 500 });
+    }
+}
+
+export async function PUT(request , { params }) {
+    const { id } = params;
+    try {
+        const body = await request.json();
+        if (!body.firstName || !body.lastName) {
+            return NextResponse.json({error: 'Missing Fields'},{status: 400})
+        }
+
+        const client = await clientPromise;
+        const db =  client.db('user');
+        await db.collection('users').findOneAndUpdate({_id: new ObjectId(id)},
+         {
+            $set: {
+                firstName: body.firstName,
+                lastName: body.lastName
+            }
+        }, {returnDocument: 'after'}
+    )
+
+        return NextResponse.json({mesage: 'Successfully Updated User'})
+
+    } catch (error) {
+        return NextResponse.json({ message: 'Error editing data', error: error.message }, { status: 500 })
     }
 }
 

@@ -4,7 +4,7 @@ import { useParams } from 'next/navigation'
 
 export default function User() {
     const params = useParams();
-    const [data,setData] = useState();
+    const [data, setData] = useState();
     const [loading, setLoading] = useState(true)
 
     async function getUserById(id) {
@@ -12,23 +12,35 @@ export default function User() {
         const data = await res.json();
         setData(data);
         setLoading(false)
-    } 
+    }
 
-    useEffect(()=>{
+    useEffect(() => {
         getUserById(params.id)
-    },[params])
-
-    
+    }, [params])
 
 
-    return(
-        <div>
-            {loading ? <div>Loading......</div> : 
+
+
+    return (
+        <>
+            {loading ? <div>Loading......</div> :
             <>
-            <div><strong>First Name:</strong> {data?.firstName}</div>
-            <div><strong>Last Name:</strong> {data?.lastName}</div>
-            </>}
-            </div>
+                <div className="columns-2">
+                    <div><strong>First Name:</strong></div>
+                    <div>{data?.firstName}</div>
+                </div>
+                <div className="columns-2">
+                    <div><strong>Last Name:</strong> </div>
+                    <div>{data?.lastName}</div>
+                </div>
+                {data?.createdAt ? 
+                <div className="columns-2">
+                    <div><strong>Created At:</strong></div>
+                    <div>{data.createdAt}</div>
+                </div> 
+                : null}
+                </>
+            }
+        </>
     )
 }
-
