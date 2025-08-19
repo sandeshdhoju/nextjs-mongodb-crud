@@ -24,21 +24,28 @@ export default function User() {
     return (
         <>
             {loading ? <div>Loading......</div> :
-            <>
-                <div className="columns-2">
-                    <div><strong>First Name:</strong></div>
-                    <div>{data?.firstName}</div>
-                </div>
-                <div className="columns-2">
-                    <div><strong>Last Name:</strong> </div>
-                    <div>{data?.lastName}</div>
-                </div>
-                {data?.createdAt ? 
-                <div className="columns-2">
-                    <div><strong>Created At:</strong></div>
-                    <div>{data.createdAt}</div>
-                </div> 
-                : null}
+                <>
+                    <div className="columns-2">
+                        <div><strong>First Name:</strong></div>
+                        <div>{data?.firstName}</div>
+                    </div>
+                    <div className="columns-2">
+                        <div><strong>Last Name:</strong> </div>
+                        <div>{data?.lastName}</div>
+                    </div>
+                    {data?.createdAt &&
+                        <div className="columns-2">
+                            <div><strong>Created At:</strong></div>
+                            <div>{data.createdAt}</div>
+                        </div>
+                    }
+                    {
+                        data?.editedAt &&
+                        <div className="columns-2">
+                            <div><strong>Edited At:</strong></div>
+                            <div>{data.editedAt}</div>
+                        </div>
+                    }
                 </>
             }
         </>

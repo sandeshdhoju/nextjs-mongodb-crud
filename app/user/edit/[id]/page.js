@@ -8,8 +8,7 @@ export default function EditUser() {
     const [loading, setLoading] = useState(true)
     const [formData, setFormData] = useState({
         firstName: "",
-        lastName: "",
-        createdAt: ""
+        lastName: ""
     })
 
     async function getUserById(id) {

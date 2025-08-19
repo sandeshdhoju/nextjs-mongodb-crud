@@ -51,3 +51,16 @@ body {
 .secondaryButton:hover {
   background-color: crimson;
 }
+
+.viewButton {
+  background-color: #3e8e41;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.viewButton:hover {
+  background-color: #04AA6D;
+}

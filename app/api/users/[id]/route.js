@@ -33,7 +33,7 @@ export async function DELETE(request, { params }) {
 }
 
 export async function PUT(request , { params }) {
-    const { id } = params;
+    const { id } = await params;
     try {
         const body = await request.json();
         if (!body.firstName || !body.lastName) {
@@ -46,7 +46,8 @@ export async function PUT(request , { params }) {
          {
             $set: {
                 firstName: body.firstName,
-                lastName: body.lastName
+                lastName: body.lastName,
+                editedAt: new Date()
             }
         }, {returnDocument: 'after'}
     )
